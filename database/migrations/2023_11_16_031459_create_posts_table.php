@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
 
             $table->foreignId('author_id');
-            $table->foreignId('category_id');
 
             $table->timestamps();
         });
