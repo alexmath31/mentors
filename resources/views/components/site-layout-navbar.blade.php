@@ -8,7 +8,11 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         @foreach($menu_items as $item)
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{$item}}</a>
+                            @if(request()->routeIs($item['route']))
+                                <a href="{!!$item['url'] ?? route($item['route'])!!}" class="bg red-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page"> {{$item['label']}}</a>
+                            @else
+                                <a href="{!!$item['url'] ?? route($item['route'])!!}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{$item['label']}}</a>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -74,9 +78,11 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="md:hidden" id="mobile-menu" x-show="mobile_menu_visible">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            @foreach($menu_items as $item)
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{$item}}</a>
-            @endforeach
+            @if(request()->routeIs($item['route']))
+                <a href="{!!$item['url'] ?? route($item['route'])!!}" class="bg gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page"> {{$item['label']}}</a>
+            @else
+                <a href="{!!$item['url'] ?? route($item['route']) !!}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{$item['label']}}</a>
+            @endif
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
             <div class="flex items-center px-5">

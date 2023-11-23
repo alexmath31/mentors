@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('is_flagged')->default(false);
             $table->timestamp('published_at')->nullable();
 
-            $table->foreignId('user_id');
+            $table->foreignId('author_id');
             $table->foreignId('category_id');
 
             $table->timestamps();

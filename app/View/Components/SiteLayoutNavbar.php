@@ -11,7 +11,11 @@ class SiteLayoutNavbar extends Component
     public array $menu_items;
     public function __construct()
     {
-        $this->menu_items=['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports'];
+        $this->menu_items=[['label'=>'Welcome','route'=>'welcome', 'url'=>null],
+            ['label'=>'Posts','route'=>'posts.index','url'=>null],
+            ['label'=>'Categories','route'=>'categories.index','url'=>null],
+            ['label'=>'Authors','route'=>'users.index','url'=>null],
+            ];
     }
 
     /**
