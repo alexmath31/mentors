@@ -2,7 +2,7 @@
 <html lang="en" class="h-full bg-gray-100">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-6">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mentors</title>
     <script src="https://cdn.tailwindcss.com"></script>

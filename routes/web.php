@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+//Public
 
 Route::get('/', [\App\Http\Controllers\WeclomContr::class, 'welcome'])->name('welcome');
 
@@ -13,3 +14,9 @@ Route::get('/categories/{id}', [\App\Http\Controllers\CategoryController::class,
 
 Route::get('/users', [\App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
 Route::get('/users/{id}', [\App\Http\Controllers\UsersController::class, 'show'])->name('users.show');
+
+//Logged in only
+Route::name('admin.')->group(function() {
+    Route::resource('/admin/categories', \App\Http\Controllers\AdminCategoryController::class);
+    }
+);

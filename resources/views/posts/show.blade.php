@@ -10,7 +10,7 @@
         Written by: <a href = "{{route ('users.show', ['id'=>$post->author->id])}}">{{$post->author->name}}</a>
     </div>
 
-    {{$post->published_at}}
-    {{$post->body}}
+        <span>{{$post->published_at}}</span>
+    <div>{{$post->content}}</div>
 
 </x-site-layout>
