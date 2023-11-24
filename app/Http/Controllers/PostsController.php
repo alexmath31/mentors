@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -10,18 +11,16 @@ class PostsController extends Controller
     {
 
         $posts = \App\Models\Post::query()
+            ->with(['author', 'categories', 'media'])
              ->whereNotNull('published_at')
             ->orderBy('published_at', 'desc')
-            ->get();
+            ->paginate(6);
 
         return view('posts.index', ['posts'=>$posts]);
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-
-        $post=\App\Models\Post::query()
-            ->findOrFail($id);
 
         if ($post->published_at == null)
         {
@@ -30,5 +29,35 @@ class PostsController extends Controller
 
         return view('posts.show', ['post'=>$post]);
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => ['required', 'min:5', 'max:20'],
+            'body' => ['required', 'min:5', 'max:2000'],
+            'image' => ['file'],
+        ]);
+
+        $post = Post::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'published_at' => null,
+            'author_id' => 11,
+        ]);
+
+        if($request->hasFile('image')) {
+            $post->addMediaFromRequest('image')->toMediaCollection();
+        }
+
+        session()->flash('success_notification', "Post '{$post->title}' created.");
+
+        return redirect()->route('posts.show', $post);
+    }
+
 }
 

@@ -15,11 +15,8 @@ class UsersController extends Controller
         return view ('users.index', ['users'=>$users]);
     }
 
-    public function show(string $id)
+    public function show(User $user)
     {
-        $user = User::query()
-            ->findOrFail($id);
-
         return view('users.show', ['user'=>$user]);
     }
 }

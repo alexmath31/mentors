@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::get('/', [\App\Http\Controllers\WeclomContr::class, 'welcome'])->name('welcome');
 
-Route::get('posts', [\App\Http\Controllers\PostsController::class, 'index'])->name('posts.index');
-Route::get('posts/{id}', [\App\Http\Controllers\PostsController::class, 'show'])->name('posts.show');
+Route::resource('posts', \App\Http\Controllers\PostsController::class);
 
 Route::get('users', [\App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
 Route::get('users/{id}', [\App\Http\Controllers\UsersController::class, 'show'])->name('users.show');

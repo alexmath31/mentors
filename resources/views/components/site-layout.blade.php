@@ -22,6 +22,7 @@
             {{$slot}}
         </div>
     </main>
+
 </div>
 
 </body>
