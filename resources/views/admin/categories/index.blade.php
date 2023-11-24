@@ -2,6 +2,8 @@
 
     <a class="underline pb-4" href="{{route('admin.categories.create')}}"> Create a category </a>
 
+    <x-crud-success-message/>
+
     <ul>
         @foreach($categories as $category)
             <li>

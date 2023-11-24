@@ -23,6 +23,8 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate(['name'=>['required','min:5', 'max:20']]);
+
         $category= Category::firstOrCreate([
             'name'=>$request->name,
         ]);
@@ -50,10 +52,14 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate(['name'=>['required','min:5', 'max:20']]);
+
         $category = Category::query()
             ->find($id);
 
         $category->update(['name'=>$request->name,]);
+
+        session()->flash('success', "Category '{{$category->name}}' Updated Successfully");
 
         return redirect()->route('admin.categories.show', $category->id);
     }
@@ -63,7 +69,11 @@ class AdminCategoryController extends Controller
     {
         $category = Category::query()
             ->find($id);
+
         $category->delete();
+
+        session()->flash('success', "Category '{{$category->name}}' Deleted Successfully");
+
         return redirect ()->route('admin.categories.index');
     }
 }

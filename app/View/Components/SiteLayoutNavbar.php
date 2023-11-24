@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class SiteLayoutNavbar extends Component
 {
     public array $menu_items;
+    public array $admin_menu_items;
     public function __construct()
     {
         $this->menu_items=[['label'=>'Welcome','route'=>'welcome', 'url'=>null],
@@ -16,6 +17,9 @@ class SiteLayoutNavbar extends Component
             ['label'=>'Categories','route'=>'categories.index','url'=>null],
             ['label'=>'Authors','route'=>'users.index','url'=>null],
             ];
+        $this->admin_menu_items = [
+            ['label' => 'Categories', 'route' => 'admin.categories.index', 'url' => null],
+        ];
     }
 
     /**

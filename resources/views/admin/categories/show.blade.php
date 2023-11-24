@@ -6,6 +6,8 @@
 
     <a class="underline" href="{{route ('admin.categories.edit', $category)}}"> Edit </a>
 
+    <x-crud-success-message/>
+
     <form action="{{route ('admin.categories.destroy', $category)}}" method="POST">
 
         @csrf
