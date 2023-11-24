@@ -8,7 +8,6 @@ Install my-project
     composer install
 ```
 Generate and seed Data 
-php artisan migrate:fresh --seed
 ```bash
     php artisan migrate:fresh --seed
 ```
